@@ -12,6 +12,11 @@
       </div>
       <button type="submit" :disabled="loading">Entrar</button>
       <div v-if="error" class="error">{{ error }}</div>
+        <div style="margin-top: 1rem; text-align: center;">
+          <a href="/register">¿No tienes cuenta? Regístrate</a>
+          <br />
+          <a href="/forgot-password">¿Olvidaste tu contraseña?</a>
+        </div>
     </form>
   </div>
 </template>
@@ -34,10 +39,15 @@ const login = async () => {
       email: email.value,
       password: password.value
     })
-    // Redirigir o actualizar estado global aquí
+    // Si el login es exitoso (204), redirigir
     window.location.href = '/dashboard'
   } catch (e) {
-    error.value = 'Credenciales incorrectas o error de servidor.'
+    if (e.response && e.response.status === 422 && e.response.data && e.response.data.errors) {
+      // Laravel Breeze retorna errores de validación
+      error.value = e.response.data.errors.email ? e.response.data.errors.email[0] : 'Error de validación.'
+    } else {
+      error.value = 'Credenciales incorrectas o error de servidor.'
+    }
   } finally {
     loading.value = false
   }

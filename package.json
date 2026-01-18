@@ -1,0 +1,34 @@
+{
+  "name": "proyectolotevendedor",
+  "version": "1.0.0",
+  "description": "![Laravel](https://img.shields.io/badge/Laravel-FF2D20?style=for-the-badge&logo=laravel&logoColor=white) ![PHP](https://img.shields.io/badge/PHP-777BB4?style=for-the-badge&logo=php&logoColor=white) ![Vite](https://img.shields.io/badge/Vite-646CFF?style=for-the-badge&logo=vite&logoColor=white) ![Status](https://img.shields.io/badge/Status-In%20Development-orange?style=for-the-badge) ![Version](https://img.shields.io/badge/Version-indev.0.1.0-blue?style=for-the-badge)",
+  "main": "vite.config.js",
+  "directories": {
+    "doc": "docs",
+    "test": "tests"
+  },
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/arconteus/ProyectoLoteVendedor.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/arconteus/ProyectoLoteVendedor/issues"
+  },
+  "homepage": "https://github.com/arconteus/ProyectoLoteVendedor#readme",
+  "dependencies": {
+    "@vitejs/plugin-vue": "^6.0.3",
+    "axios": "^1.13.2",
+    "laravel-vite-plugin": "^2.0.1",
+    "vite": "^7.3.1",
+    "vue": "^3.5.26"
+  }
+}

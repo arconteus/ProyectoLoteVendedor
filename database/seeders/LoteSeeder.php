@@ -14,6 +14,12 @@ class LoteSeeder extends Seeder
     public function run(): void
     {
         Lote::factory()->create([
+            'nombre' => 'Sin sucursal asignada',
+            'direccion' => '---',
+            'identificador' => 'NULL',
+        ]);
+        
+        Lote::factory()->create([
             'nombre' => 'Sucursal Rancho Grande',
             'direccion' => 'Av. Rancho Grande',
             'identificador' => 'LOTE001',

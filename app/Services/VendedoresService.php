@@ -22,7 +22,7 @@ class VendedoresService
     public function getAll(array $data): Collection
     {
         // Construir la consulta con posibles filtros
-        $query = Vendedor::query();
+        $query = Vendedor::query()->with('lote');
         // Aplicar Ordenamiento
         $query->orderBy($data['orderBy'] ?? 'id', $data['orderDirection'] ?? 'desc');
         // Aplicar Quick Search
@@ -84,17 +84,26 @@ class VendedoresService
         $url = config('services.vendedores_api.base_url');
         $apiVendedores = Http::get($url)->json();
 
-        foreach ($apiVendedores as $v) {
-            \App\Models\Vendedor::updateOrCreate(
-                ['external_id' => $v['id']], // buscar por ID externo
-                [
-                    'nombre' => $v['name'],
-                    'email' => $v['email'],
-                    'telefono' => $v['phone'],
-                    'direccion' => $v['address'],
+        // Create vendedores using the fetched data
+        foreach ($apiVendedores as $index => $vendedorData) {
+            $vendedor = Vendedor::where('external_id', $vendedorData['id'])->first();
+            if ($vendedor) {
+                // Actualiza solo los datos, NO el lote
+                $vendedor->update([
+                    'nombre' => $vendedorData['name'],
+                    'email' => $vendedorData['email'],
+                    'telefono' => $vendedorData['phone'],
+                ]);
+            } else {
+                // Nuevo: asigna lote dado
+                Vendedor::create([
+                    'external_id' => $vendedorData['id'],
+                    'nombre' => $vendedorData['name'],
+                    'email' => $vendedorData['email'],
+                    'telefono' => $vendedorData['phone'],
                     'lote_id' => $data['lote_id'],
-                ]
-            );
+                ]);
+            }
         }
     }
 }

@@ -11,9 +11,7 @@ class UpdateRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        $id = $this->route('id');
-        $vendedor = \App\Models\Vendedor::find($id);
-        return $vendedor && $this->user()->can('update', $vendedor);
+        return $this->user()->can('update', \App\Models\Vendedor::class);
     }
 
     /**
@@ -25,6 +23,7 @@ class UpdateRequest extends FormRequest
     {
         $id = $this->route('id');
         return [
+            'id' => 'required|integer|exists:vendedores,id',
             'nombre' => 'sometimes|string|max:100',
             'email' => 'sometimes|string|email|max:150',
             'telefono' => 'sometimes|nullable|string|max:20',

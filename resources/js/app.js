@@ -1,6 +1,6 @@
 import { createApp } from 'vue'
 import Login from './components/Login.vue'
-import LotesList from './components/LotesList.vue'
+import Dashboard from './components/Dashboard.vue'
 import LogoutButton from './components/LogoutButton.vue'
 import '../css/custom.scss';
 import 'bootstrap-icons/font/bootstrap-icons.css';
@@ -16,8 +16,7 @@ if (document.getElementById('app')) {
 
 // Dashboard
 if (document.getElementById('dashboard-app')) {
-	const dashboardApp = createApp({})
-	dashboardApp.component('LotesList', LotesList)
+	const dashboardApp = createApp(Dashboard)
 	dashboardApp.component('LogoutButton', LogoutButton)
 	dashboardApp.mount('#dashboard-app')
 }

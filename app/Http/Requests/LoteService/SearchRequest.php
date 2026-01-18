@@ -27,7 +27,7 @@ class SearchRequest extends FormRequest
             'orderDirection' => 'sometimes|string|in:asc,desc',
             'q' => 'sometimes|string',
             'where' => 'sometimes|array',
-            'where.*' => 'string|in:id,nombre,direccion,identificador,activo,created_at,updated_at',
+            'where.*' => 'sometimes',
         ];
     }
 }

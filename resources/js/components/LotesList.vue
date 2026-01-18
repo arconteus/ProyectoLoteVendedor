@@ -1,23 +1,36 @@
 <template>
   <div>
-    <h2 class="mb-3">Lista de Lotes</h2>
-      <div class="d-flex justify-content-between align-items-center mb-3">
-        <h2 class="mb-0">Lista de Lotes</h2>
-        <button class="btn btn-success" @click="showCreateModal = true">
-          <i class="bi bi-plus-lg"></i> Nueva Lote
-        </button>
-      </div>
+    <!-- <h2 class="mb-3">Lista de Lotes</h2> -->
+    <div class="d-flex justify-content-between align-items-center mb-3">
+      <h2 class="mb-0">Lista de Lotes</h2>
+      <button class="btn btn-success" @click="showCreateModal = true">
+        <i class="bi bi-plus-lg"></i> Nueva Lote
+      </button>
+    </div>
     <div v-if="loading" class="text-info">Cargando lotes...</div>
     <div v-else-if="error" class="text-danger">{{ error }}</div>
     <table v-else class="table table-dark table-striped table-bordered align-middle">
       <thead>
         <tr>
           <th></th>
-          <th>ID</th>
-          <th>Nombre</th>
-          <th>Dirección</th>
-          <th>Identificador</th>
-          <th>Activo</th>
+          <th>
+            <button class="btn btn-link p-0 text-light" @click="sort('id')">ID <i :class="sortIcon('id')"></i></button>
+          </th>
+          <th>
+            <button class="btn btn-link p-0 text-light" @click="sort('nombre')">Nombre <i :class="sortIcon('nombre')"></i></button>
+          </th>
+          <th>
+            <button class="btn btn-link p-0 text-light" @click="sort('direccion')">Dirección <i :class="sortIcon('direccion')"></i></button>
+          </th>
+          <th>
+            <button class="btn btn-link p-0 text-light" @click="sort('identificador')">Identificador <i :class="sortIcon('identificador')"></i></button>
+          </th>
+          <th>
+            <button class="btn btn-link p-0 text-light" @click="sort('activo')">Activo <i :class="sortIcon('activo')"></i></button>
+          </th>
+          <th>
+            # Vendedores
+          </th>
           <th></th>
         </tr>
       </thead>
@@ -33,6 +46,7 @@
           <td>{{ lote.direccion }}</td>
           <td>{{ lote.identificador }}</td>
           <td>{{ lote.activo ? 'Sí' : 'No' }}</td>
+          <td>{{ lote.vendedores?.length || 0 }}</td>
           <td>
             <button class="btn btn-sm btn-outline-danger" title="Eliminar" @click="deleteLote(lote.id)">
               <i class="bi bi-trash"></i>
@@ -75,14 +89,37 @@ onMounted(async () => {
   }
 })
 
+
 const lotes = ref([])
 const loading = ref(true)
 const error = ref('')
+const orderBy = ref('id')
+const orderDirection = ref('asc')
+
+function sort(field) {
+  if (orderBy.value === field) {
+    orderDirection.value = orderDirection.value === 'asc' ? 'desc' : 'asc'
+  } else {
+    orderBy.value = field
+    orderDirection.value = 'asc'
+  }
+  fetchLotes()
+}
+
+function sortIcon(field) {
+  if (orderBy.value !== field) return 'bi bi-arrow-down-up'
+  return orderDirection.value === 'asc' ? 'bi bi-arrow-up' : 'bi bi-arrow-down'
+}
 
 async function fetchLotes() {
   loading.value = true
   try {
-    const response = await axios.get('/api/lotes')
+    const response = await axios.get('/api/lotes', {
+      params: {
+        orderBy: orderBy.value,
+        orderDirection: orderDirection.value
+      }
+    })
     lotes.value = response.data
   } catch (e) {
     error.value = 'No se pudieron cargar los lotes. ' + e.message

@@ -27,6 +27,6 @@ class Vendedor extends Model
     // Relación con Lote
     public function lote()
     {
-        return $this->belongsTo(Lote::class);
+        return $this->belongsTo(Lote::class, 'lote_id');
     }
 }

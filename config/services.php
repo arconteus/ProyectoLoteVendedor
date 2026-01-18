@@ -35,4 +35,8 @@ return [
         ],
     ],
 
+    // API externa de vendedores
+    'vendedores_api' => [
+        'base_url' => env('VENDEDORES_API_URL'),
+    ],
 ];

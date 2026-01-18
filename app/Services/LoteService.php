@@ -21,7 +21,7 @@ class LoteService
     public function getAll(array $data): Collection
     {
         // Construir la consulta con posibles filtros
-        $query = Lote::query();
+        $query = Lote::query()->with('vendedores');
         // Aplicar Ordenamiento
         $query->orderBy($data['orderBy'] ?? 'id', $data['orderDirection'] ?? 'desc');
         // Aplicar Quick Search

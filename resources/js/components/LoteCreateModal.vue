@@ -3,7 +3,7 @@
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title">Agregar Nueva Sucursal</h5>
+          <h5 class="modal-title">Agregar Nuevo Lote</h5>
           <button type="button" class="btn-close" @click="$emit('close')"></button>
         </div>
         <form @submit.prevent="submit">
@@ -70,7 +70,7 @@ async function submit() {
     emit('created')
     emit('close')
   } catch (e) {
-    error.value = e.response?.data?.message || 'Error al crear sucursal.'
+    error.value = e.response?.data?.message || 'Error al crear lote.'
   }
 }
 </script>

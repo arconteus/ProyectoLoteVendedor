@@ -4,7 +4,7 @@
       <div class="d-flex justify-content-between align-items-center mb-3">
         <h2 class="mb-0">Lista de Lotes</h2>
         <button class="btn btn-success" @click="showCreateModal = true">
-          <i class="bi bi-plus-lg"></i> Nueva Sucursal
+          <i class="bi bi-plus-lg"></i> Nueva Lote
         </button>
       </div>
     <div v-if="loading" class="text-info">Cargando lotes...</div>
@@ -42,7 +42,7 @@
       </tbody>
     </table>
 </div>
-    <SucursalCreateModal
+    <LoteCreateModal
       :show="showCreateModal"
       @close="showCreateModal = false"
       @created="fetchLotes"
@@ -60,7 +60,7 @@
 import { ref, onMounted } from 'vue'
 import axios from 'axios'
 import LoteEditModal from './LoteEditModal.vue'
-import SucursalCreateModal from './SucursalCreateModal.vue'
+import LoteCreateModal from './LoteCreateModal.vue'
 
 const showCreateModal = ref(false)
 

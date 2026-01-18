@@ -6,10 +6,18 @@
 ![Status](https://img.shields.io/badge/Status-In%20Development-orange?style=for-the-badge)
 ![Version](https://img.shields.io/badge/Version-indev.0.1.0-blue?style=for-the-badge)
 
+
+## 📚 Documentación
+
+- [Arquitectura](docs/architecture.md)
+- [Base de datos](docs/database.md)
+
 ## Descripción
 
 Proyecto de prueba creado para experimentar con **Laravel 12** y **Vue 3**, enfocado en la gestión básica de lotes y vendedores.  
 El proyecto funciona como un entorno de testeo para explorar la integración de frontend y backend mediante **Vite**, así como el uso de **Sass** y buenas prácticas de organización.
+
+## D
 
 ## Requisitos
 
@@ -22,7 +30,7 @@ Antes de descargar este proyecto asegurese de contar con:
 - Servidor local (XAMPP, Laragon o similar)
 - Git
 
-## 🚀 Guía de Instalación Rápida
+## Guía de Instalación Rápida
 
 1. Clona el repositorio:
 	```bash

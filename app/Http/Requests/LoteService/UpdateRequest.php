@@ -22,11 +22,14 @@ class UpdateRequest extends FormRequest
      */
     public function rules(): array
     {
+        $id = $this->input('id') ?? $this->route('id');
         return [
             'id' => 'required|integer|exists:lotes,id',
             'nombre' => 'sometimes|string|max:255',
             'direccion' => 'sometimes|string|max:500',
-            'identificador' => 'sometimes|string|max:100|unique:lotes,identificador,' . $this->input('id'),
+            // Solo un identificador nuevo o el mismo puede ser usado
+            // El campo 'identificador' no es lo mismo que 'id'
+            'identificador' => 'sometimes|string|max:100|unique:lotes,identificador,' . $id,
             'activo' => 'sometimes|boolean',
         ];
     }

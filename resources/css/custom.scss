@@ -1,0 +1,19 @@
+// resources/css/custom.scss
+
+// Sobrescribe variables de Bootstrap antes de importar
+$body-bg: #181a1b;
+$body-color: #e8e6e3;
+$card-bg: #23272f;
+$input-bg: #23272f;
+$btn-bg: #23272f;
+$btn-color: #e8e6e3;
+
+@import 'bootstrap/scss/bootstrap';
+.modal-backdrop {
+	background-color: #181a1b !important;
+	opacity: 0.7 !important;
+	z-index: 1040 !important;
+}
+.modal {
+	z-index: 1050 !important;
+}

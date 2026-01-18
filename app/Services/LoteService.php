@@ -69,9 +69,9 @@ class LoteService
      * Funcion para eliminar un lote por su ID.
      * @return bool
      */
-    public function delete(array $data): bool
+    public function delete(int $id): bool
     {
-        $lote = Lote::find($data['id']);
+        $lote = Lote::find($id);
         if ($lote->vendedores()->count() > 0) {
             throw new \Exception("No se puede eliminar el lote porque tiene vendedores asociados.");
         }

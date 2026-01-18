@@ -49,9 +49,9 @@ const login = async () => {
   max-width: 400px;
   margin: 2rem auto;
   padding: 2rem;
-  border: 1px solid #ddd;
+  border: 1px solid #acacac;
   border-radius: 8px;
-  background: #fff;
+  background: #383838;
 }
 label {
   display: block;
@@ -61,13 +61,13 @@ input {
   width: 100%;
   padding: 0.5rem;
   margin-bottom: 1rem;
-  border: 1px solid #ccc;
+  border: 1px solid #acacac;
   border-radius: 4px;
 }
 button {
   width: 100%;
   padding: 0.75rem;
-  background: #4f46e5;
+  background: #ff7dad;
   color: #fff;
   border: none;
   border-radius: 4px;
@@ -75,10 +75,10 @@ button {
   cursor: pointer;
 }
 button:disabled {
-  background: #a5b4fc;
+  background: #ff96bd;
 }
 .error {
-  color: #dc2626;
+  color: #ff5e5e;
   margin-top: 1rem;
 }
 </style>

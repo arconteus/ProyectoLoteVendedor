@@ -4,13 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
     <style>
         body {
-            background-color: #181a1b;
-            color: #e8e6e3;
+            background-color: #181a1b !important;
+            color: #e8e6e3 !important;
         }
-        .container, .card, .form-control, .btn {
+        .container{
+            background-color: #181a1b !important;
+            color: #e8e6e3 !important;
+        } 
+        .card, .form-control, .btn {
             background-color: #23272f !important;
             color: #e8e6e3 !important;
             border-color: #444c56 !important;
@@ -24,9 +27,21 @@
     </style>
 </head>
 <body>
-    <div class="container mt-5">
-        <h1>Bienvenido al Dashboard</h1>
-        <p>Has iniciado sesión correctamente.</p>
+    <div id="dashboard-app" class="container d-flex justify-content-center align-items-start min-vh-100 py-5">
+        <div class="card shadow-lg w-100" style="max-width: 700px; background-color: #23272f;">
+            <div class="card-body">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <div>
+                        <h1 class="h3 mb-1">Bienvenido al Dashboard</h1>
+                        <p class="mb-0 text-secondary">Has iniciado sesión correctamente.</p>
+                    </div>
+                    <logout-button />
+                </div>
+                <hr style="border-color: #444c56;">
+                <lotes-list />
+            </div>
+        </div>
     </div>
+    @vite('resources/js/app.js')
 </body>
 </html>

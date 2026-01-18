@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 // Request
-use App\Http\Requests\LoteService\{CreateRequest, DeleteRequest, SearchRequest, UpdateRequest,};
+use App\Http\Requests\LoteService\{CreateRequest, SearchRequest, UpdateRequest,};
 // Service
 use App\Services\LoteService;
 
@@ -75,9 +75,10 @@ class LoteController extends Controller
      * Parámetros esperados en la request:
      * - id: ID del lote a eliminar (integer, requerido)
      */
-    public function destroy(DeleteRequest $request)
+    public function destroy($id)
     {
-        $response = $this->loteService->delete($request->validated());
+        // Elimina el lote
+        $response = $this->loteService->delete($id);
         if(!$response) {
             return response()->json(['message' => 'Lote can not be deleted.'], 404);
         }

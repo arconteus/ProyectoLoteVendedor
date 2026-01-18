@@ -23,6 +23,9 @@ class CreateRequest extends FormRequest
     {
         return [
             'nombre' => 'required|string|max:255',
+            'direccion' => 'required|string|max:500',
+            'identificador' => 'required|string|max:100|unique:lotes,identificador',
+            'activo' => 'boolean',
         ];
     }
 }

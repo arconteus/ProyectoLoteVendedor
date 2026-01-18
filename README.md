@@ -22,21 +22,34 @@ Antes de descargar este proyecto asegurese de contar con:
 - Servidor local (XAMPP, Laragon o similar)
 - Git
 
-## Instalación
+## 🚀 Guía de Instalación Rápida
 
-git clone https://github.com/tu-usuario/tu-repo.git
-cd tu-repo
+1. Clona el repositorio:
+	```bash
+	git clone https://github.com/tu-usuario/tu-repo.git
+	cd tu-repo
+	```
+2. Instala dependencias de PHP y Node.js:
+	```bash
+	composer install
+	npm install
+	```
+3. Copia el archivo de entorno y genera la clave:
+	```bash
+	cp .env.example .env
+	php artisan key:generate
+	```
+4. Ejecuta migraciones y seeders:
+	```bash
+	php artisan migrate --seed
+	```
+5. Inicia los servidores de desarrollo:
+	```bash
+	npm run dev
+	php artisan serve
+	```
 
-composer install
-npm install
-
-cp .env.example .env
-php artisan key:generate
-
-php artisan migrate --seed
-
-npm run dev
-php artisan serve
+¡Listo! Accede a la aplicación en tu navegador.
 
 ## Usuario de Prueba
 
@@ -60,11 +73,8 @@ Password: password
 - DELETE /api/lotes/{id}
 
 ### Vendedores
-- POST /api/vendedores/import
-- GET /api/lotes/{id}/vendedores
+- POST /api/vendedores/sync
+- GET /api/lotes/{id}/vendedores *(requiere que la ruta esté registrada, ver código)*
 
-## Testing
-
-Se incluyeron pruebas básicas con PHPUnit para validar reglas de negocio críticas.
-
-php artisan test
+## API Publica
+- GET /api/quick/lotes/1/vendedores *(Regresa un json con los vendedores asignados a ese lote)*
